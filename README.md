@@ -15,7 +15,7 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
 ## HTTP/1.1 server
 
 * Run `node http.js` in one terminal
-* Run `netstat -ct` in another terminal
+* Run `watch 'netstat -t | grep 3000'` in another terminal
 * Visit [http://localhost:3000](http://localhost:3000) in your browser
 * Browser tab would display "Hello World".
 * netstat terminal will display the new TCP connection created, for example:
