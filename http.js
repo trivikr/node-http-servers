@@ -1,8 +1,13 @@
-const http = require("http");
+const https = require("https");
 const fs = require("fs");
 
-http
-  .createServer((req, res) => {
+const options = {
+  key: fs.readFileSync("ssl/localhost.key"),
+  cert: fs.readFileSync("ssl/localhost.cert")
+};
+
+https
+  .createServer(options, (req, res) => {
     if (req.url === "/") {
       fs.createReadStream("./files/index.html").pipe(res);
     } else if (req.url === "/color.css") {
