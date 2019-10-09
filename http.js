@@ -1,16 +1,14 @@
 const http = require("http");
+const fs = require("fs");
 
-const getStyle = (location) => `<link rel='stylesheet' type='text/css' href='./${location}' />`;
-
-http.createServer((req, res) => {
-  if(req.url === "/") {
-    res.setHeader('content-type', 'text/html');
-    res.write(getStyle("color.css"));
-    res.write(getStyle("underline.css"));
-    res.end("<div>Hello World!</div>");
-  } else if (req.url === "/color.css") {
-    res.end("div { color: green; }");
-  } else if (req.url === "/underline.css") {
-    res.end("div { text-decoration: underline; }");
-  }
-}).listen(3000);
+http
+  .createServer((req, res) => {
+    if (req.url === "/") {
+      fs.createReadStream("./files/index.html").pipe(res);
+    } else if (req.url === "/color.css") {
+      fs.createReadStream("./files/color.css").pipe(res);
+    } else if (req.url === "/decor.css") {
+      fs.createReadStream("./files/decor.css").pipe(res);
+    }
+  })
+  .listen(3000);
