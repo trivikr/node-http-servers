@@ -6,12 +6,12 @@ const options = {
   cert: fs.readFileSync("ssl/localhost.cert")
 };
 
-const socket = quic.createSocket(3000);
+const socket = quic.createSocket({ port: 3000 });
 socket.listen(options);
 
 socket.on("session", (session) => {
   // A new server side session has been created
-  
+
   session.on("stream", (stream, headers) => {
     if (headers[':path'] === "/") {
       stream.respondWithFile("./files/index.html");
