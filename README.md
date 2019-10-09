@@ -27,3 +27,17 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
   tcp6       0      0 ip6-localhost:49522     ip6-localhost:3000      ESTABLISHED
   ```
 * If you examine the ouput using `sudo tcpflow -c`, then you'll see that the TCP sockets (49522 and 49524) were created to download the two CSS files in parallel
+
+## HTTP/2 server
+
+* Run `node http2.js` in one terminal
+* Run `watch 'netstat -t | grep 3000'` in another terminal
+* Visit [http://localhost:3000](http://localhost:3000) in your browser
+* Browser tab would display "Hello World".
+* netstat terminal will display the new TCP connection created, for example:
+  ```console
+  Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+  tcp6       0      0 ip6-localhost:3000      ip6-localhost:50162     ESTABLISHED
+  tcp6       0      0 ip6-localhost:50162     ip6-localhost:3000      ESTABLISHED
+  ```
+* If you examine the ouput using `sudo tcpflow -c`, then you'll see that all files are downloaded over single TCP socket (50162 in above example)
