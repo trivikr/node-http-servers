@@ -9,6 +9,8 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
   1. Verify that node is installed by running `node -v` in a terminal window and confirm that it shows the latest version of `v10`, such as `v10.16.3`)
 - Install [**netstat**](https://en.wikipedia.org/wiki/Netstat) for inspecting TCP connections
   - On Ubuntu, netstat can be installed by running `sudo apt-get install net-tools`
+- Install [**tcpflow**](https://github.com/simsong/tcpflow) for inspecting TCP connections in detail
+  - On Ubuntu, netstat can be installed by running `sudo apt-get install tcpflow`
 
 ## HTTP/1.1 server
 
@@ -19,12 +21,9 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
 * netstat terminal will display the new TCP connection created, for example:
   ```console
   Proto Recv-Q Send-Q Local Address           Foreign Address         State      
-  tcp6       0      0 ip6-localhost:49116     ip6-localhost:3000      ESTABLISHED
-  tcp6       0      0 ip6-localhost:3000      ip6-localhost:49116     ESTABLISHED
+  tcp6       0      0 ip6-localhost:3000      ip6-localhost:49524     ESTABLISHED
+  tcp6       0      0 ip6-localhost:49524     ip6-localhost:3000      ESTABLISHED
+  tcp6       0      0 ip6-localhost:3000      ip6-localhost:49522     ESTABLISHED
+  tcp6       0      0 ip6-localhost:49522     ip6-localhost:3000      ESTABLISHED
   ```
-* After some time, the connections will be closed
-  ```console
-  Proto Recv-Q Send-Q Local Address           Foreign Address         State      
-  tcp6       1      0 ip6-localhost:49116     ip6-localhost:3000      CLOSE_WAIT 
-  tcp6       0      0 ip6-localhost:3000      ip6-localhost:49116     FIN_WAIT2
-  ```
+* If you examine the ouput using `sudo tcpflow -c`, then you'll see that the TCP sockets (49522 and 49524) were created to download the two CSS files in parallel
