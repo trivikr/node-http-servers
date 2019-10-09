@@ -16,7 +16,7 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
 
 * Run `node http.js` in one terminal
 * Run `watch 'netstat -t | grep 3000'` in another terminal
-* Visit [http://localhost:3000](http://localhost:3000) in your browser
+* Visit [https://localhost:3000](https://localhost:3000) in your browser
 * Browser tab would display "Hello World".
 * netstat terminal will display the new TCP connection created, for example:
   ```console
@@ -32,7 +32,7 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
 
 * Run `node http2.js` in one terminal
 * Run `watch 'netstat -t | grep 3000'` in another terminal
-* Visit [http://localhost:3000](http://localhost:3000) in your browser
+* Visit [https://localhost:3000](https://localhost:3000) in your browser
 * Browser tab would display "Hello World".
 * netstat terminal will display the new TCP connection created, for example:
   ```console
@@ -41,3 +41,11 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
   tcp6       0      0 ip6-localhost:50162     ip6-localhost:3000      ESTABLISHED
   ```
 * If you examine the ouput using `sudo tcpflow -c`, then you'll see that all files are downloaded over single TCP socket (50162 in above example)
+
+## QUIC server
+
+* Run `../quic/node http2.js` in one terminal
+  * where `../quic/node` is the node build with quic enabled
+* Run `google-chrome-unstable --enable-quic --quic-versi=h3-23` to start Chrome unstable with quic enabled  
+* Visit [https://localhost:3000](https://localhost:3000) in your browser, and it'll display "This site can't be reached"
+* The terminal which runs Chrome displays `Fontconfig error: Cannot load default config file`
