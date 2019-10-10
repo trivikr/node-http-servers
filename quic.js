@@ -19,6 +19,8 @@ socket.on("session", session => {
       stream.respondWithFile("./files/style.css");
     } else if (headers[":path"] === "/script.js") {
       stream.respondWithFile("./files/script.js");
+    } else if (headers[":path"] === "/globe.png") {
+      stream.respondWithFile("./files/globe.png");
     }
   });
 });

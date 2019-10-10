@@ -14,6 +14,8 @@ https
       fs.createReadStream("./files/style.css").pipe(res);
     } else if (req.url === "/script.js") {
       fs.createReadStream("./files/script.js").pipe(res);
+    } else if (req.url === "/globe.png") {
+      fs.createReadStream("./files/globe.png").pipe(res);
     }
   })
   .listen(3000);
