@@ -10,10 +10,10 @@ https
   .createServer(options, (req, res) => {
     if (req.url === "/") {
       fs.createReadStream("./files/index.html").pipe(res);
-    } else if (req.url === "/color.css") {
-      fs.createReadStream("./files/color.css").pipe(res);
-    } else if (req.url === "/decor.css") {
-      fs.createReadStream("./files/decor.css").pipe(res);
+    } else if (req.url === "/style.css") {
+      fs.createReadStream("./files/style.css").pipe(res);
+    } else if (req.url === "/script.js") {
+      fs.createReadStream("./files/script.js").pipe(res);
     }
   })
   .listen(3000);
