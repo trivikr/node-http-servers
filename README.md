@@ -44,7 +44,7 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
 
 ## QUIC server
 
-* Run `../quic/node http2.js` in one terminal
+* Run `../quic/node quic.js` in one terminal
   * where `../quic/node` is the node build with quic enabled
 * Run `google-chrome-unstable --enable-quic --quic-versi=h3-23` to start Chrome unstable with quic enabled  
 * Visit [https://localhost:3000](https://localhost:3000) in your browser, and it'll display "This site can't be reached"
