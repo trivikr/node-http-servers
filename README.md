@@ -49,4 +49,4 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
   * Follow instructions in [nodejs/quic#183](https://github.com/nodejs/quic/issues/183) to build node with QUIC enabled
 * Run `google-chrome-unstable --enable-quic --quic-version=h3-23` to start Chrome unstable with quic enabled
 * Visit [https://localhost:3000](https://localhost:3000) in your browser, and it'll display "This site can't be reached"
-* The terminal which runs Chrome displays `Fontconfig error: Cannot load default config file`
+* The terminal which runs Chrome displays `Fontconfig error: Cannot load default config file` (issue being discussed in [trivikr/node-http-servers/#2](https://github.com/trivikr/node-http-servers/issues/2))
