@@ -48,5 +48,14 @@ Comparing HTTP/1.1, HTTP/2 and QUIC with Node.js
   * where `../quic/node` is the node build with quic enabled
   * Follow instructions in [nodejs/quic#183](https://github.com/nodejs/quic/issues/183) to build node with QUIC enabled
 * Run `google-chrome-unstable --enable-quic --quic-version=h3-23` to start google-chrome-unstable with quic enabled
-* Visit [https://localhost:3000](https://localhost:3000) in your browser, and it'll display "This site can't be reached"
-* The terminal which runs Chrome displays `Fontconfig error: Cannot load default config file` (issue being discussed in [trivikr/node-http-servers/#2](https://github.com/trivikr/node-http-servers/issues/2))
+  * Visit [https://localhost:3000](https://localhost:3000) in your browser, and it'll display "This site can't be reached"
+  * The terminal which runs Chrome displays `Fontconfig error: Cannot load default config file`
+  * This issue is being discussed in [trivikr/node-http-servers/#2](https://github.com/trivikr/node-http-servers/issues/2)
+* Alternatively, you can build curl with quic support by following [these instructions](https://github.com/curl/curl/blob/master/docs/HTTP3.md)
+  * Run `src/curl --http3 https://localhost:3000`, and it fails with the following error:
+
+    ```console
+    curl: (56) nghttp3_conn_read_stream returned error: ERR_HTTP_FRAME_ERROR
+    ```
+
+  * This issue is being discussed in [trivikr/node-http-servers/#3](https://github.com/trivikr/node-http-servers/issues/3)
