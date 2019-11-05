@@ -8,14 +8,14 @@ const options = {
 
 https
   .createServer(options, (req, res) => {
+    // regular expression for filename requested
+    const re  = /\/(\w+)*/;
+    const filename = req.url.replace(re, "$1");
+    
     if (req.url === "/") {
-      fs.createReadStream("./files/index.html").pipe(res);
-    } else if (req.url === "/style.css") {
-      fs.createReadStream("./files/style.css").pipe(res);
-    } else if (req.url === "/script.js") {
-      fs.createReadStream("./files/script.js").pipe(res);
-    } else if (req.url === "/globe.png") {
-      fs.createReadStream("./files/globe.png").pipe(res);
+      fs.createReadStream(`./files/index.html`).pipe(res);
+    } else {
+      fs.createReadStream(`./files/${filename}`).pipe(res);
     }
   })
   .listen(3000);

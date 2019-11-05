@@ -9,13 +9,13 @@ const options = {
 const server = http2.createSecureServer(options).listen(3000);
 
 server.on("stream", (stream, headers) => {
+  // regular expression for filename requested
+  const re  = /\/(\w+)*/;
+  const filename = headers[":path"].replace(re, "$1");
+  
   if (headers[":path"] === "/") {
     stream.respondWithFile("./files/index.html");
-  } else if (headers[":path"] === "/style.css") {
-    stream.respondWithFile("./files/style.css");
-  } else if (headers[":path"] === "/script.js") {
-    stream.respondWithFile("./files/script.js");
-  } else if (headers[":path"] === "/globe.png") {
-    stream.respondWithFile("./files/globe.png");
+  } else {
+    fs.createReadStream(`./files/${filename}`).pipe(res);
   }
 });
