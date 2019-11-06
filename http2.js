@@ -9,13 +9,12 @@ const options = {
 const server = http2.createSecureServer(options).listen(3000);
 
 server.on("stream", (stream, headers) => {
-  // regular expression for filename requested
-  const re = /\/(\w+)*/;
-  const filename = headers[":path"].replace(re, "$1");
-
   if (headers[":path"] === "/") {
     stream.respondWithFile("./files/index.html");
   } else {
+    // regular expression for filename requested
+    const re = /\/(\w+)*/;
+    const filename = headers[":path"].replace(re, "$1");
     stream.respondWithFile(`./files/${filename}`);
   }
 });

@@ -8,13 +8,12 @@ const options = {
 
 https
   .createServer(options, (req, res) => {
-    // regular expression for filename requested
-    const re = /\/(\w+)*/;
-    const filename = req.url.replace(re, "$1");
-
     if (req.url === "/") {
       fs.createReadStream(`./files/index.html`).pipe(res);
     } else {
+      // regular expression for filename requested
+      const re = /\/(\w+)*/;
+      const filename = req.url.replace(re, "$1");
       fs.createReadStream(`./files/${filename}`).pipe(res);
     }
   })
