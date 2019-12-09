@@ -3,6 +3,10 @@ body {
   align-items: center;
 }
 
-#greeting {
-  font-size: 180px;
+img {
+  margin: 0 30px;
+}
+
+div {
+  font-size: 100px;
 }

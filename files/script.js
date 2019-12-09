@@ -1,4 +1,4 @@
 setTimeout(() => {
-  document.getElementById("greeting").innerHTML = "Hello #cjs19!";
-  document.getElementById("image").src = "./cjs.png";
+  document.getElementById("greeting").innerHTML = "#NodeJSInteractive";
+  document.getElementById("image").src = "./njsi.png";
 }, 1000);
