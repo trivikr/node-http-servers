@@ -1,4 +1,4 @@
-const http2 = require("http2");
+const { createSecureServer } = require("http2");
 const fs = require("fs");
 
 const options = {
@@ -6,7 +6,7 @@ const options = {
   cert: fs.readFileSync("ssl/localhost.cert")
 };
 
-const server = http2.createSecureServer(options).listen(3000);
+const server = createSecureServer(options).listen(3000);
 
 server.on("stream", (stream, headers) => {
   if (headers[":path"] === "/") {
