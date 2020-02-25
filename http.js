@@ -1,18 +1,18 @@
 const { createServer } = require("https");
-const fs = require("fs");
+const { readFileSync, createReadStream } = require("fs");
 
 const options = {
-  key: fs.readFileSync("ssl/localhost.key"),
-  cert: fs.readFileSync("ssl/localhost.cert")
+  key: readFileSync("ssl/localhost.key"),
+  cert: readFileSync("ssl/localhost.cert")
 };
 
 createServer(options, (req, res) => {
   if (req.url === "/") {
-    fs.createReadStream(`./files/index.html`).pipe(res);
+    createReadStream(`./files/index.html`).pipe(res);
   } else {
     // regular expression for filename requested
     const re = /\/(\w+)*/;
     const filename = req.url.replace(re, "$1");
-    fs.createReadStream(`./files/${filename}`).pipe(res);
+    createReadStream(`./files/${filename}`).pipe(res);
   }
 }).listen(3000);
